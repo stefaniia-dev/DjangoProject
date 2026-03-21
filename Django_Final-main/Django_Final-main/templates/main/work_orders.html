@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width-device-width, initial-scale = 1, maximum-scale=1"/>
+    <title> Work_orders</title>
+
+    <!--Linking CSS file -->
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <!--Linking Java Script file -->
+    <script src = "{% static 'js/app.js' %}"> </script>
+    <script src ="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+       <style>
+
+        body.dark{
+            background-color: #02033c;
+            color: black;
+        }
+
+        </style>
+
+
+</head>
+
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Business app</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href = "/events/">Events</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href = '/work_orders/'>Work_Orders</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href = "{% url 'user-logout'  %}">Log out</a>
+      </li>
+    </ul>
+      <br>
+  </div>
+</nav>
+
+<br>
+<br>
+
+<body class="{{ theme }}">
+
+<div class="container bg-white shadow-md p-5">
+
+    <h2>Here you can assign work orders</h2>
+
+    <br>
+
+    <form method="POST" action="{% url 'work_orders' %}">
+
+        {% csrf_token %}
+
+            <label for="work_name"> Work Order:</label>
+            <input type="text" name="work_name" id="work_name" required>
+        <br>
+        <br>
+            <label for="description">Description: </label>
+            <input type="text" name="description" id="description" required>
+        <br>
+        <br>
+            <label for="due_date">Due date: </label>
+            <input type="date" name="due_date" id="due_date" required>
+        <br>
+        <br>
+            <label for="in_progress">In progress</label>
+            <input type="checkbox" name="in_progress" id="in_progress" required>
+        <br>
+        <br>
+
+
+<br>
+        <button class ="btn btn-outline-primary" type="submit"> Add a work order
+        </button>
+
+    </form>
+    <br>
+
+</div>
+
+</body>
